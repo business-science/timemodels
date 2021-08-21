@@ -127,6 +127,11 @@
       <a href="../articles/modeling-panel-data.html">Forecasting Panel Data</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Nested Forecasting</li>
+    <li>
+      <a href="../articles/nested-forecasting.html">Getting Started with Nested Forecasting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Algorithms</li>
     <li>
       <a href="../articles/modeltime-model-list.html">Modeltime Algorithm Roadmap</a>
@@ -228,12 +233,56 @@
 <h1 class="page-header" data-toc-text="0.7.0.9000">
 <a href="#modeltime-0709000-development-version" class="anchor"></a>modeltime 0.7.0.9000 (Development Version)<small> Unreleased </small>
 </h1>
+<div id="new-feature-nested-iterative-forecasting" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-feature-nested-iterative-forecasting" class="anchor"></a>New Feature: Nested (Iterative) Forecasting</h3>
+<p><strong>Nested (Iterative) Forecasting</strong> is aimed at making it easier to perform forecasting that is traditionally done in a <em>for-loop</em> with models like ARIMA, Prophet, and Exponential Smoothing. Functionality has been added to:</p>
+<div id="format-data-in-a-nested-time-series-structure" class="section level4">
+<h4 class="hasAnchor">
+<a href="#format-data-in-a-nested-time-series-structure" class="anchor"></a>Format data in a Nested Time Series structure</h4>
+<ul>
+<li>
+<strong>Data Preparation Utilities:</strong> <code><a href="../reference/prep_nested.html">extend_timeseries()</a></code>, <code><a href="../reference/prep_nested.html">nest_timeseries()</a></code>, and <code>split_nested_timeseris()</code>.</li>
+</ul>
+</div>
+<div id="nested-model-fitting-traintest" class="section level4">
+<h4 class="hasAnchor">
+<a href="#nested-model-fitting-traintest" class="anchor"></a>Nested Model Fitting (Train/Test)</h4>
+<ul>
+<li><p><strong><code><a href="../reference/modeltime_nested_fit.html">modeltime_nested_fit()</a></code>:</strong> Fits many models to nested time series data and organizes in a “Nested Modeltime Table”. Logs Accuracy, Errors, and Test Forecasts.</p></li>
+<li><p><strong><code><a href="../reference/control_nested_fit.html">control_nested_fit()</a></code>:</strong> Used to control the fitting process including verbosity and parallel processing.</p></li>
+<li><p><strong>Logging Extractors:</strong> Functions that retrieve logged information from the initial fitting process. <code><a href="../reference/log_extractors.html">extract_nested_test_accuracy()</a></code>, <code><a href="../reference/log_extractors.html">extract_nested_error_report()</a></code>, and <code><a href="../reference/log_extractors.html">extract_nested_test_forecast()</a></code>.</p></li>
+</ul>
+</div>
+<div id="nested-model-selection" class="section level4">
+<h4 class="hasAnchor">
+<a href="#nested-model-selection" class="anchor"></a>Nested Model Selection</h4>
+<ul>
+<li><p><strong><code><a href="../reference/modeltime_nested_select_best.html">modeltime_nested_select_best()</a></code></strong>: Selects the best model for each time series ID.</p></li>
+<li><p><strong>Logging Extractors:</strong> Functions that retrieve logged information from the model selection process. <code><a href="../reference/log_extractors.html">extract_nested_best_model_report()</a></code></p></li>
+</ul>
+</div>
+<div id="nested-model-refitting-actual-data" class="section level4">
+<h4 class="hasAnchor">
+<a href="#nested-model-refitting-actual-data" class="anchor"></a>Nested Model Refitting (Actual Data)</h4>
+<ul>
+<li><p><strong><code><a href="../reference/modeltime_nested_refit.html">modeltime_nested_refit()</a></code>:</strong> Refits to the <code>.future_data</code>. Logs Future Forecasts.</p></li>
+<li><p><strong><code><a href="../reference/control_nested_refit.html">control_nested_refit()</a></code>:</strong> Used to control the re-fitting process including verbosity and parallel processing.</p></li>
+<li><p><strong>Logging Extractors:</strong> Functions that retrieve logged information from the re-fitting process. <code><a href="../reference/log_extractors.html">extract_nested_future_forecast()</a></code>.</p></li>
+</ul>
+</div>
+</div>
+<div id="new-vignette" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-vignette" class="anchor"></a>New Vignette</h3>
+<p><a href="https://business-science.github.io/modeltime/articles/nested-forecasting.html">Nested Forecasting</a></p>
+</div>
 <div id="workflowsets-integration" class="section level3">
 <h3 class="hasAnchor">
 <a href="#workflowsets-integration" class="anchor"></a>Workflowsets Integration</h3>
 <ul>
 <li>
-<code><a href="../reference/modeltime_fit_workflowset.html">modeltime_fit_workflowset()</a></code>: Improved handling of Workflowset Descriptions</li>
+<code><a href="../reference/modeltime_fit_workflowset.html">modeltime_fit_workflowset()</a></code>: Improved handling of Workflowset Descriptions, which now match the <code>wflow_id</code>.</li>
 </ul>
 </div>
 </div>
@@ -251,9 +300,9 @@
 <li><p><code><a href="../reference/modeltime_forecast.html">modeltime_forecast()</a></code>: Gains a <code>conf_by_id</code> argument that is <code>TRUE</code>/<code>FALSE</code>. If the data has been calibrated with <code>id</code>, then the user can return local model confidence by the identifier column. The forecast data frame will return an extra column indicating the identifier column. The confidence intervals will be adjusted based on the local time series ID variance instead of the global model variance.</p></li>
 </ul>
 </div>
-<div id="new-vignette" class="section level3">
+<div id="new-vignette-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-vignette" class="anchor"></a>New Vignette</h3>
+<a href="#new-vignette-1" class="anchor"></a>New Vignette</h3>
 <p><a href="https://business-science.github.io/modeltime/articles/modeling-panel-data.html">Forecasting Panel Data</a></p>
 </div>
 <div id="new-algorithms" class="section level3">

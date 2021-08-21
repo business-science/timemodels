@@ -81,6 +81,11 @@
       <a href="../articles/modeling-panel-data.html">Forecasting Panel Data</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Nested Forecasting</li>
+    <li>
+      <a href="../articles/nested-forecasting.html">Getting Started with Nested Forecasting</a>
+    </li>
+    <li class="divider">
     <li class="dropdown-header">Algorithms</li>
     <li>
       <a href="../articles/modeltime-model-list.html">Modeltime Algorithm Roadmap</a>
@@ -448,12 +453,12 @@ Modeltime Workflow
 <code class="sourceCode R"><span class="va">calib_tbl</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="../reference/modeltime_accuracy.html">modeltime_accuracy</a></span><span class="op">(</span>acc_by_id <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="../reference/table_modeltime_accuracy.html">table_modeltime_accuracy</a></span><span class="op">(</span>.interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div id="ceubquzkcd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oijmwpkrvx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ceubquzkcd .gt_table {
+#oijmwpkrvx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -478,7 +483,7 @@ Modeltime Workflow
   border-left-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_heading {
+#oijmwpkrvx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -490,7 +495,7 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_title {
+#oijmwpkrvx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -500,23 +505,23 @@ Modeltime Workflow
   border-bottom-width: 0;
 }
 
-#ceubquzkcd .gt_subtitle {
+#oijmwpkrvx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#ceubquzkcd .gt_bottom_border {
+#oijmwpkrvx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_col_headings {
+#oijmwpkrvx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -531,7 +536,7 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_col_heading {
+#oijmwpkrvx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -551,7 +556,7 @@ Modeltime Workflow
   overflow-x: hidden;
 }
 
-#ceubquzkcd .gt_column_spanner_outer {
+#oijmwpkrvx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -563,27 +568,27 @@ Modeltime Workflow
   padding-right: 4px;
 }
 
-#ceubquzkcd .gt_column_spanner_outer:first-child {
+#oijmwpkrvx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ceubquzkcd .gt_column_spanner_outer:last-child {
+#oijmwpkrvx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ceubquzkcd .gt_column_spanner {
+#oijmwpkrvx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
-#ceubquzkcd .gt_group_heading {
+#oijmwpkrvx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -605,7 +610,7 @@ Modeltime Workflow
   vertical-align: middle;
 }
 
-#ceubquzkcd .gt_empty_group_heading {
+#oijmwpkrvx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -620,15 +625,15 @@ Modeltime Workflow
   vertical-align: middle;
 }
 
-#ceubquzkcd .gt_from_md > :first-child {
+#oijmwpkrvx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ceubquzkcd .gt_from_md > :last-child {
+#oijmwpkrvx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ceubquzkcd .gt_row {
+#oijmwpkrvx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -647,7 +652,7 @@ Modeltime Workflow
   overflow-x: hidden;
 }
 
-#ceubquzkcd .gt_stub {
+#oijmwpkrvx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -659,7 +664,7 @@ Modeltime Workflow
   padding-left: 12px;
 }
 
-#ceubquzkcd .gt_summary_row {
+#oijmwpkrvx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -669,7 +674,7 @@ Modeltime Workflow
   padding-right: 5px;
 }
 
-#ceubquzkcd .gt_first_summary_row {
+#oijmwpkrvx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -679,7 +684,7 @@ Modeltime Workflow
   border-top-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_grand_summary_row {
+#oijmwpkrvx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -689,7 +694,7 @@ Modeltime Workflow
   padding-right: 5px;
 }
 
-#ceubquzkcd .gt_first_grand_summary_row {
+#oijmwpkrvx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -699,11 +704,11 @@ Modeltime Workflow
   border-top-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_striped {
+#oijmwpkrvx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ceubquzkcd .gt_table_body {
+#oijmwpkrvx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -712,7 +717,7 @@ Modeltime Workflow
   border-bottom-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_footnotes {
+#oijmwpkrvx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -726,13 +731,13 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_footnote {
+#oijmwpkrvx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ceubquzkcd .gt_sourcenotes {
+#oijmwpkrvx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -746,41 +751,41 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#ceubquzkcd .gt_sourcenote {
+#oijmwpkrvx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ceubquzkcd .gt_left {
+#oijmwpkrvx .gt_left {
   text-align: left;
 }
 
-#ceubquzkcd .gt_center {
+#oijmwpkrvx .gt_center {
   text-align: center;
 }
 
-#ceubquzkcd .gt_right {
+#oijmwpkrvx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ceubquzkcd .gt_font_normal {
+#oijmwpkrvx .gt_font_normal {
   font-weight: normal;
 }
 
-#ceubquzkcd .gt_font_bold {
+#oijmwpkrvx .gt_font_bold {
   font-weight: bold;
 }
 
-#ceubquzkcd .gt_font_italic {
+#oijmwpkrvx .gt_font_italic {
   font-style: italic;
 }
 
-#ceubquzkcd .gt_super {
+#oijmwpkrvx .gt_super {
   font-size: 65%;
 }
 
-#ceubquzkcd .gt_footnote_marks {
+#oijmwpkrvx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -823,12 +828,12 @@ Modeltime Workflow
 <code class="sourceCode R"><span class="va">calib_tbl</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="../reference/modeltime_accuracy.html">modeltime_accuracy</a></span><span class="op">(</span>acc_by_id <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu"><a href="../reference/table_modeltime_accuracy.html">table_modeltime_accuracy</a></span><span class="op">(</span>.interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<div id="dmraylfkma" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="byqpaqrdnf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dmraylfkma .gt_table {
+#byqpaqrdnf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -853,7 +858,7 @@ Modeltime Workflow
   border-left-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_heading {
+#byqpaqrdnf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -865,7 +870,7 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_title {
+#byqpaqrdnf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -875,23 +880,23 @@ Modeltime Workflow
   border-bottom-width: 0;
 }
 
-#dmraylfkma .gt_subtitle {
+#byqpaqrdnf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#dmraylfkma .gt_bottom_border {
+#byqpaqrdnf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_col_headings {
+#byqpaqrdnf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -906,7 +911,7 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_col_heading {
+#byqpaqrdnf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -926,7 +931,7 @@ Modeltime Workflow
   overflow-x: hidden;
 }
 
-#dmraylfkma .gt_column_spanner_outer {
+#byqpaqrdnf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -938,27 +943,27 @@ Modeltime Workflow
   padding-right: 4px;
 }
 
-#dmraylfkma .gt_column_spanner_outer:first-child {
+#byqpaqrdnf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dmraylfkma .gt_column_spanner_outer:last-child {
+#byqpaqrdnf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dmraylfkma .gt_column_spanner {
+#byqpaqrdnf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
-#dmraylfkma .gt_group_heading {
+#byqpaqrdnf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -980,7 +985,7 @@ Modeltime Workflow
   vertical-align: middle;
 }
 
-#dmraylfkma .gt_empty_group_heading {
+#byqpaqrdnf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -995,15 +1000,15 @@ Modeltime Workflow
   vertical-align: middle;
 }
 
-#dmraylfkma .gt_from_md > :first-child {
+#byqpaqrdnf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dmraylfkma .gt_from_md > :last-child {
+#byqpaqrdnf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dmraylfkma .gt_row {
+#byqpaqrdnf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1022,7 +1027,7 @@ Modeltime Workflow
   overflow-x: hidden;
 }
 
-#dmraylfkma .gt_stub {
+#byqpaqrdnf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1034,7 +1039,7 @@ Modeltime Workflow
   padding-left: 12px;
 }
 
-#dmraylfkma .gt_summary_row {
+#byqpaqrdnf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1044,7 +1049,7 @@ Modeltime Workflow
   padding-right: 5px;
 }
 
-#dmraylfkma .gt_first_summary_row {
+#byqpaqrdnf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1054,7 +1059,7 @@ Modeltime Workflow
   border-top-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_grand_summary_row {
+#byqpaqrdnf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1064,7 +1069,7 @@ Modeltime Workflow
   padding-right: 5px;
 }
 
-#dmraylfkma .gt_first_grand_summary_row {
+#byqpaqrdnf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1074,11 +1079,11 @@ Modeltime Workflow
   border-top-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_striped {
+#byqpaqrdnf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dmraylfkma .gt_table_body {
+#byqpaqrdnf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1087,7 +1092,7 @@ Modeltime Workflow
   border-bottom-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_footnotes {
+#byqpaqrdnf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1101,13 +1106,13 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_footnote {
+#byqpaqrdnf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dmraylfkma .gt_sourcenotes {
+#byqpaqrdnf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1121,41 +1126,41 @@ Modeltime Workflow
   border-right-color: #D3D3D3;
 }
 
-#dmraylfkma .gt_sourcenote {
+#byqpaqrdnf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dmraylfkma .gt_left {
+#byqpaqrdnf .gt_left {
   text-align: left;
 }
 
-#dmraylfkma .gt_center {
+#byqpaqrdnf .gt_center {
   text-align: center;
 }
 
-#dmraylfkma .gt_right {
+#byqpaqrdnf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dmraylfkma .gt_font_normal {
+#byqpaqrdnf .gt_font_normal {
   font-weight: normal;
 }
 
-#dmraylfkma .gt_font_bold {
+#byqpaqrdnf .gt_font_bold {
   font-weight: bold;
 }
 
-#dmraylfkma .gt_font_italic {
+#byqpaqrdnf .gt_font_italic {
   font-style: italic;
 }
 
-#dmraylfkma .gt_super {
+#byqpaqrdnf .gt_super {
   font-size: 65%;
 }
 
-#dmraylfkma .gt_footnote_marks {
+#byqpaqrdnf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
