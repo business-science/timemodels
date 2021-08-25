@@ -196,7 +196,7 @@
 </blockquote>
 <p><strong>Why is nested forecasting important?</strong> For starters, the ability to <em>iteratively forecast</em> time series with many models that are trained on many individual groups has been a huge request from students in our <a href="https://university.business-science.io/p/ds4b-203-r-high-performance-time-series-forecasting/">Time Series Course</a>. Why? Because two methods exist that get results:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Global Modeling:</strong> Best for scalability using a Panel Data structure. See <a href="https://business-science.github.io/modeltime/articles/modeling-panel-data.html">Forecasting Panel Data</a>.</p></li>
+<li><p><strong>Global Modeling:</strong> Best for scalability using a Global Models and a Panel Data structure. See <a href="https://business-science.github.io/modeltime/articles/modeling-panel-data.html">Forecasting with Global Models</a>.</p></li>
 <li><p><strong>Iterative Forecasting:</strong> Best for accuracy using a Nested Data Structure. Takes longer than global model (more resources due to for-loop iteration), but can yield great results.</p></li>
 </ol>
 <p>We’ve incorporated a new approach called <strong><em>“nested forecasting”</em></strong> to help perform <em>Iterative Forecasting</em>.</p>
@@ -279,9 +279,21 @@
 <p><img src="nested-forecasting_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>We can clearly see that there are 7 time series groups with different weekly sales patterns.</p>
 </div>
-<div id="data-preparation" class="section level3">
+<div id="nested-forecasting-preparation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#data-preparation" class="anchor"></a>Data Preparation</h3>
+<a href="#nested-forecasting-preparation" class="anchor"></a>Nested Forecasting Preparation</h3>
+<p>There are two key components that we need to prepare for:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Nested Data Structure:</strong> Most critical to ensure your data is prepared (covered next)</p></li>
+<li><p><strong>Nested Modeltime Workflow:</strong> This stage is where we create many models, fit the models to the data, and generate forecasts at scale</p></li>
+</ol>
+<p>Conceptually, the workflow looks like this where we combine nested data and tidymodels workflows using an upcoming function, <code><a href="../reference/modeltime_nested_fit.html">modeltime_nested_fit()</a></code>.</p>
+<p><img src="modeltime_nested_fit.jpg" width="80%" style="display: block; margin: auto;"></p>
+</div>
+</div>
+<div id="data-preparation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-preparation" class="anchor"></a>Data Preparation</h2>
 <p>The most critical stage in <strong>“Nested Forecasting”</strong> is data preparation, making sure that the input to the nested forecasting workflow is in the appropriate structure. We’ve included several functions to help that involve a bit of forethought that can be broken into 3 steps:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Extending each of the times series:</strong> How far into the future do you need to predict for each time series? See <code><a href="../reference/prep_nested.html">extend_timeseries()</a></code>.</p></li>
@@ -328,16 +340,16 @@
 <span class="co">#&gt; 7 1_95  &lt;tibble [104 × 2]&gt; &lt;tibble [52 × 2]&gt; &lt;split [52/52]&gt;</span></code></pre></div>
 <p>This creates a nested tibble with “.actual_data”, “.future_data”, and “.splits”. Each column will help in the nested modeltime workflow.</p>
 </div>
-</div>
 <div id="nested-modeltime-workflow" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nested-modeltime-workflow" class="anchor"></a>Nested Modeltime Workflow</h2>
-<p>Next, we move into the <strong>Nested Modeltime Workflow</strong> now that nested data has been created. The Nested Modeltime Workflow includes 3 key functions:</p>
+<p>Next, we move into the <strong>Nested Modeltime Workflow</strong> now that nested data has been created. The Nested Modeltime Workflow includes 3 core functions:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Modeling Fitting:</strong> This is the training stage where we fit to <em>training data</em>. The <em>test forecast</em> is generated from this step. See <code><a href="../reference/modeltime_nested_fit.html">modeltime_nested_fit()</a></code>.</p></li>
 <li><p><strong>Model Evaluation and Selection:</strong> This is where we review model performance and select the best model by minimizing or maximizing an error metric. See <code><a href="../reference/modeltime_nested_select_best.html">modeltime_nested_select_best()</a></code>.</p></li>
 <li><p><strong>Model Refitting:</strong> This is the final fitting stage where we fit to <em>actual data</em>. The <em>future forecast</em> is generated from this step. See <code><a href="../reference/modeltime_nested_refit.html">modeltime_nested_refit()</a></code>.</p></li>
 </ol>
+<p><img src="nested-core-functions.jpg" width="80%" style="display: block; margin: auto;"></p>
 <div id="step-1-create-tidymodels-workflows" class="section level3">
 <h3 class="hasAnchor">
 <a href="#step-1-create-tidymodels-workflows" class="anchor"></a>Step 1: Create Tidymodels Workflows</h3>
@@ -386,9 +398,9 @@
   <span class="va">wflw_xgb</span>
 <span class="op">)</span>
 <span class="co">#&gt; Fitting models on training data... ■■■■■                             14% | ETA:…</span>
-<span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■                        29% | ETA:…</span>
+<span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■■■■■                    43% | ETA:…</span>
 <span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■■■■■■■■■                57% | ETA:…</span>
-<span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■■■■■■■■■■■■■            71% | ETA:…</span>
+<span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■■■■■■■■■■■■■■■■■■       86% | ETA:…</span>
 <span class="co">#&gt; Fitting models on training data... ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:…</span>
 
 <span class="va">nested_modeltime_tbl</span>
@@ -419,12 +431,12 @@
 <code class="sourceCode R"><span class="va">nested_modeltime_tbl</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/log_extractors.html">extract_nested_test_accuracy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/table_modeltime_accuracy.html">table_modeltime_accuracy</a></span><span class="op">(</span>.interactive <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
-<div id="pvnhfoqfpj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jchacdchvg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pvnhfoqfpj .gt_table {
+#jchacdchvg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -449,7 +461,7 @@
   border-left-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_heading {
+#jchacdchvg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -461,7 +473,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_title {
+#jchacdchvg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -471,7 +483,7 @@
   border-bottom-width: 0;
 }
 
-#pvnhfoqfpj .gt_subtitle {
+#jchacdchvg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -481,13 +493,13 @@
   border-top-width: 0;
 }
 
-#pvnhfoqfpj .gt_bottom_border {
+#jchacdchvg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_col_headings {
+#jchacdchvg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -502,7 +514,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_col_heading {
+#jchacdchvg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -522,7 +534,7 @@
   overflow-x: hidden;
 }
 
-#pvnhfoqfpj .gt_column_spanner_outer {
+#jchacdchvg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -534,15 +546,15 @@
   padding-right: 4px;
 }
 
-#pvnhfoqfpj .gt_column_spanner_outer:first-child {
+#jchacdchvg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pvnhfoqfpj .gt_column_spanner_outer:last-child {
+#jchacdchvg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pvnhfoqfpj .gt_column_spanner {
+#jchacdchvg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -554,7 +566,7 @@
   width: 100%;
 }
 
-#pvnhfoqfpj .gt_group_heading {
+#jchacdchvg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -576,7 +588,7 @@
   vertical-align: middle;
 }
 
-#pvnhfoqfpj .gt_empty_group_heading {
+#jchacdchvg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -591,15 +603,15 @@
   vertical-align: middle;
 }
 
-#pvnhfoqfpj .gt_from_md > :first-child {
+#jchacdchvg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pvnhfoqfpj .gt_from_md > :last-child {
+#jchacdchvg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pvnhfoqfpj .gt_row {
+#jchacdchvg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -618,7 +630,7 @@
   overflow-x: hidden;
 }
 
-#pvnhfoqfpj .gt_stub {
+#jchacdchvg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -630,7 +642,7 @@
   padding-left: 12px;
 }
 
-#pvnhfoqfpj .gt_summary_row {
+#jchacdchvg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -640,7 +652,7 @@
   padding-right: 5px;
 }
 
-#pvnhfoqfpj .gt_first_summary_row {
+#jchacdchvg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +662,7 @@
   border-top-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_grand_summary_row {
+#jchacdchvg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -660,7 +672,7 @@
   padding-right: 5px;
 }
 
-#pvnhfoqfpj .gt_first_grand_summary_row {
+#jchacdchvg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -670,11 +682,11 @@
   border-top-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_striped {
+#jchacdchvg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pvnhfoqfpj .gt_table_body {
+#jchacdchvg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -683,7 +695,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_footnotes {
+#jchacdchvg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -697,13 +709,13 @@
   border-right-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_footnote {
+#jchacdchvg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#pvnhfoqfpj .gt_sourcenotes {
+#jchacdchvg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -717,41 +729,41 @@
   border-right-color: #D3D3D3;
 }
 
-#pvnhfoqfpj .gt_sourcenote {
+#jchacdchvg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#pvnhfoqfpj .gt_left {
+#jchacdchvg .gt_left {
   text-align: left;
 }
 
-#pvnhfoqfpj .gt_center {
+#jchacdchvg .gt_center {
   text-align: center;
 }
 
-#pvnhfoqfpj .gt_right {
+#jchacdchvg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pvnhfoqfpj .gt_font_normal {
+#jchacdchvg .gt_font_normal {
   font-weight: normal;
 }
 
-#pvnhfoqfpj .gt_font_bold {
+#jchacdchvg .gt_font_bold {
   font-weight: bold;
 }
 
-#pvnhfoqfpj .gt_font_italic {
+#jchacdchvg .gt_font_italic {
   font-style: italic;
 }
 
-#pvnhfoqfpj .gt_super {
+#jchacdchvg .gt_super {
   font-size: 65%;
 }
 
-#pvnhfoqfpj .gt_footnote_marks {
+#jchacdchvg .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -958,7 +970,7 @@
     .facet_ncol  <span class="op">=</span> <span class="fl">2</span>,
     .interactive <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div id="extract-nested-error-logs" class="section level4">
 <h4 class="hasAnchor">
@@ -1015,7 +1027,7 @@
     .facet_ncol  <span class="op">=</span> <span class="fl">2</span>,
     .interactive <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="step-5-refitting-and-future-forecast" class="section level3">
@@ -1054,7 +1066,7 @@
 <span class="co">#&gt; ✔ Model 2 Passed XGBOOST.</span>
 <span class="co">#&gt; ✔ [7/7] Finished Modeltime Table: ID 1_95</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Finished in: 4.591999 secs.</span></code></pre></div>
+<span class="co">#&gt; Finished in: 5.255243 secs.</span></code></pre></div>
 <p>Note that we used <code><a href="../reference/control_nested_refit.html">control_nested_refit(verbose = TRUE)</a></code> to display the modeling results as each model is refit. This is not necessary, but can be useful to follow the nested model fitting process.</p>
 <p>We can see that the nested modeltime table appears the same, but has now been trained on <code>.actual_data</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -1084,7 +1096,7 @@
     .interactive <span class="op">=</span> <span class="cn">FALSE</span>,
     .facet_ncol  <span class="op">=</span> <span class="fl">2</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="nested-forecasting_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
